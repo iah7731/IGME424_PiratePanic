@@ -1,0 +1,3 @@
+displayName = Pirate Panic
+author = The Modstuhs
+version = 0.1
