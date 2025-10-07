@@ -8,10 +8,10 @@ namespace PiratePanic.Content.NPCs
     public class ExampleGlobalNPC : GlobalNPC
     {
         public override void ModifyShop (NPCShop shop) 	
-        {
+        {//
             if (shop.NpcType == NPCID.Pirate)
             {
-                shop.Add(<TutorialSword>());
+                shop.Add<TutorialSword>();
             }
         }
     }
