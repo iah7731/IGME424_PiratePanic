@@ -2,7 +2,7 @@
 
 Items: {
 	TutorialSword: {
-		DisplayName: "Tutorial Sword"
+		DisplayName: Tutorial Sword
 		Tooltip:
 			'''
 			Template of an item
@@ -10,4 +10,17 @@ Items: {
 			It's snowing on Mt.Fuji
 			'''
 	}
+
+	LookingSpyGlass: {
+		DisplayName: Looking Spy Glass
+		Tooltip: ""
+	}
+
+	TellNoTales: {
+		DisplayName: Tell No Tales
+		Tooltip: ""
+	}
 }
+
+NPCs.CursedPirate.DisplayName: Cursed Pirate
+Projectiles.TellNoTalesProjectile.DisplayName: Tell No Tales Projectile
