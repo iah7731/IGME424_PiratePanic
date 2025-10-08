@@ -16,6 +16,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
+using Terraria.Chat;
 
 namespace PiratePanic.Content.NPCs
 {
@@ -30,6 +31,7 @@ namespace PiratePanic.Content.NPCs
 			NPCID.Sets.ShimmerTownTransform[Type] = false; // Allows for this NPC to have a different texture after touching the Shimmer liquid.
 
 			NPCID.Sets.NoTownNPCHappiness[NPC.type] = true;
+			NPCID.Sets.SpawnsWithCustomName[Type] = true;
 
 			// Influences how the NPC looks in the Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
@@ -81,63 +83,65 @@ namespace PiratePanic.Content.NPCs
 			button = "Summon";
 		}
 
+		public override void OnChatButtonClicked(bool firstButton, ref string shopName)
+		{
+			if(firstButton)
+			{
+				SpawnDaveEJones(Main.myPlayer);
+			}
+		}
+
+
 		public override bool CanGoToStatue(bool toKingStatue) => true;
 
-		// public static void SpawnDaveEJones(int onWho)
-		// {
-		// 	bool flag = true;
-		// 	bool flag2 = false;
-		// 	Vector2 zero = Vector2.Zero;
-		// 	int num = 0;
-		// 	int num2 = 0;
-		// 	for (int i = 0; i < 200; i++)
-		// 	{
-		// 		if (Main.npc[i].active && Main.npc[i].type == 35)
-		// 		{
-		// 			flag = false;
-		// 			break;
-		// 		}
-		// 	}
-		// 	for (int j = 0; j < 200; j++)
-		// 	{
-		// 		if (!Main.npc[j].active)
-		// 		{
-		// 			continue;
-		// 		}
-		// 		if (Main.npc[j].type == 37)
-		// 		{
-		// 			flag2 = true;
-		// 			Main.npc[j].ai[3] = 1f;
-		// 			zero = Main.npc[j].position;
-		// 			num = Main.npc[j].width;
-		// 			num2 = Main.npc[j].height;
-		// 			if (Main.netMode == 2)
-		// 			{
-		// 				NetMessage.SendData(23, -1, -1, null, j);
-		// 			}
-		// 		}
-		// 		else if (Main.npc[j].type == 54)
-		// 		{
-		// 			flag2 = true;
-		// 			zero = Main.npc[j].position;
-		// 			num = Main.npc[j].width;
-		// 			num2 = Main.npc[j].height;
-		// 		}
-		// 	}
-		// 	if (flag && flag2)
-		// 	{
-		// 		int num3 = NPC.NewNPC(NPC.GetBossSpawnSource(onWho), (int)zero.X + num / 2, (int)zero.Y + num2 / 2, 35);
-		// 		Main.npc[num3].netUpdate = true;
-		// 		string nPCNameValue = Lang.GetNPCNameValue(35);
-		// 		if (Main.netMode == 0)
-		// 		{
-		// 			Main.NewText(Language.GetTextValue("Announcement.HasAwoken", nPCNameValue), 175, 75);
-		// 		}
-		// 		else if (Main.netMode == 2)
-		// 		{
-		// 			ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", Lang.GetNPCName(35).ToNetworkText()), new Color(175, 75, 255));
-		// 		}
-		// 	}
-		// }
+		public static void SpawnDaveEJones(int onWho)
+		{
+			bool flag = true;
+			bool flag2 = false;
+			Vector2 zero = Vector2.Zero;
+			int num = 0;
+			int num2 = 0;
+			for (int i = 0; i < 200; i++)
+			{
+				if (Main.npc[i].active && Main.npc[i].type == 35) // change this to Dave E Jones ID later
+				{
+					flag = false;
+					break;
+				}
+			}
+			for (int j = 0; j < 200; j++)
+			{
+				if (!Main.npc[j].active)
+				{
+					continue;
+				}
+				if (Main.npc[j].type == ModContent.NPCType<CursedPirate>())
+				{
+					flag2 = true;
+					Main.npc[j].ai[3] = 1f;
+					zero = Main.npc[j].position;
+					num = Main.npc[j].width;
+					num2 = Main.npc[j].height;
+					if (Main.netMode == 2)
+					{
+						NetMessage.SendData(23, -1, -1, null, j);
+					}
+				}
+			}
+			if (flag && flag2)
+			{
+				int num3 = NPC.NewNPC(NPC.GetBossSpawnSource(onWho), (int)zero.X + num / 2, (int)zero.Y + num2 / 2, 35); // change the 35 to Dave E Jones's ID
+				Main.npc[num3].netUpdate = true;
+				string nPCNameValue = Lang.GetNPCNameValue(ModContent.NPCType<CursedPirate>());
+				if (Main.netMode == 0)
+				{
+					Main.NewText(Language.GetTextValue("Announcement.HasAwoken", nPCNameValue), 175, 75);
+				}
+				else if (Main.netMode == 2)
+				{
+					ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", Lang.GetNPCName(35).ToNetworkText()), new Color(175, 75, 255));
+				}
+			}
+		}
     }
 }
