@@ -132,14 +132,14 @@ namespace PiratePanic.Content.NPCs
 			{
 				int num3 = NPC.NewNPC(NPC.GetBossSpawnSource(onWho), (int)zero.X + num / 2, (int)zero.Y + num2 / 2, 35); // change the 35 to Dave E Jones's ID
 				Main.npc[num3].netUpdate = true;
-				string nPCNameValue = Lang.GetNPCNameValue(ModContent.NPCType<CursedPirate>());
+				string nPCNameValue = Lang.GetNPCNameValue(ModContent.NPCType<CursedPirate>()); // Change this to Dave E Jones
 				if (Main.netMode == 0)
 				{
 					Main.NewText(Language.GetTextValue("Announcement.HasAwoken", nPCNameValue), 175, 75);
 				}
 				else if (Main.netMode == 2)
 				{
-					ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", Lang.GetNPCName(35).ToNetworkText()), new Color(175, 75, 255));
+					ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", Lang.GetNPCName(35).ToNetworkText()), new Color(175, 75, 255)); // Change this to Dave E Jones
 				}
 			}
 		}

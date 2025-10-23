@@ -22,5 +22,9 @@ Items: {
 	}
 }
 
-NPCs.CursedPirate.DisplayName: Cursed Pirate
+NPCs: {
+	CursedPirate.DisplayName: Cursed Pirate
+	DaveEJonesDeckhand.DisplayName: Dave E Jones Deckhand
+}
+
 Projectiles.TellNoTalesProjectile.DisplayName: Tell No Tales Projectile
