@@ -11,10 +11,10 @@ using Terraria.ModLoader.Utilities;
 
 namespace PiratePanic.Content.NPCs
 {
-	public class DaveEJonesDeadeye : ModNPC
+	public class DaveEJonesCrossbower : ModNPC
 	{
 		public override void SetStaticDefaults() {
-			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.PirateDeadeye];
+			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.PirateCrossbower];
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers() {
 				Velocity = 1f 
@@ -25,18 +25,18 @@ namespace PiratePanic.Content.NPCs
 		public override void SetDefaults() {
 			NPC.width = 18;
 			NPC.height = 40;
-			NPC.damage = 50;
-			NPC.defense = 20;
-			NPC.lifeMax = 275;
+			NPC.damage = 45;
+			NPC.defense = 27;
+			NPC.lifeMax = 375;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.value = 60f;
 			NPC.knockBackResist = 0.3f;
 			NPC.aiStyle = NPCAIStyleID.Fighter; 
 
-			AIType = NPCID.PirateDeadeye; // Might end up despawning if there isn't a Pirate Invasion. Needs to be checked.
-			AnimationType = NPCID.PirateDeadeye; 
-			Banner = Item.NPCtoBanner(NPCID.PirateDeadeye);
+			AIType = NPCID.PirateCrossbower; // Might end up despawning if there isn't a Pirate Invasion. Needs to be checked.
+			AnimationType = NPCID.PirateCrossbower; 
+			Banner = Item.NPCtoBanner(NPCID.PirateCrossbower);
 			BannerItem = Item.BannerToItem(Banner); 
 		}
 
@@ -47,7 +47,7 @@ namespace PiratePanic.Content.NPCs
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("Dave E Jones Deadeye"),
+				new FlavorTextBestiaryInfoElement("Dave E Jones Crossbower"),
 			]);
 		}
 
