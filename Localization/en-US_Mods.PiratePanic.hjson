@@ -25,6 +25,12 @@ Items: {
 NPCs: {
 	CursedPirate.DisplayName: Cursed Pirate
 	DaveEJonesDeckhand.DisplayName: Dave E Jones Deckhand
+	DaveEJonesDeadeye.DisplayName: Dave E Jones Deadeye
+	DaveEJonesCorsair.DisplayName: Dave E Jones Corsair
+	DaveEJonesCrossbower.DisplayName: Dave E Jones Crossbower
+	AngryJones.DisplayName: Angry Jones
+	RaggedJones.DisplayName: Ragged Jones
+	SpiritDiabolist.DisplayName: Spirit Diabolist
 }
 
 Projectiles.TellNoTalesProjectile.DisplayName: Tell No Tales Projectile
