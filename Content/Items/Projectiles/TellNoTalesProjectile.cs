@@ -12,9 +12,21 @@ namespace PiratePanic.Content.Items.Projectiles
         {
             Projectile.CloneDefaults(ProjectileID.Wasp);
             AIType = ProjectileID.Wasp;
+            Projectile.ignoreWater = true;
 
 
             Projectile.tileCollide = false;
         }
+
+        public override void AI()
+        {
+            //Projectile.velocity *= 1.05f;
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            target.AddBuff(BuffID.CursedInferno, 300);
+        }
+
     }
 }

@@ -13,12 +13,12 @@ Items: {
 
 	LookingSpyGlass: {
 		DisplayName: Looking Spy Glass
-		Tooltip: ""
+		Tooltip: "The curse lies within."
 	}
 
 	TellNoTales: {
 		DisplayName: Tell No Tales
-		Tooltip: ""
+		Tooltip: "You heard it from a dead man."
 	}
 }
 
