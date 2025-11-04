@@ -13,10 +13,9 @@ using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using StructureHelper;
 
-
 namespace PiratePanic.Content.Subworlds
 {
-    internal class DaveEJonesIsland : Subworld
+    internal class IslandTest : Subworld
     {
 
         public override bool ShouldSave => true;
@@ -29,6 +28,5 @@ namespace PiratePanic.Content.Subworlds
         {
 
         };
-
     }
 }
