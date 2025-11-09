@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.ModLoader.Utilities;
+using PiratePanic.Content.Biomes;
 
 namespace PiratePanic.Content.NPCs
 {
@@ -70,13 +71,12 @@ namespace PiratePanic.Content.NPCs
 			}
 		}
 
-		// public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-		// 	// Can only spawn in the ExampleSurfaceBiome and if there are no other ExampleZombieThiefs
-		// 	if (spawnInfo.Player.InModBiome(ModContent.GetInstance<ExampleSurfaceBiome>()) && !NPC.AnyNPCs(Type)) {
-		// 		return SpawnCondition.OverworldNightMonster.Chance * 0.1f; // Spawn with 1/10th the chance of a regular zombie.
-		// 	}
-
-		// 	return 0f;
-		// }
+		public override float SpawnChance(NPCSpawnInfo spawnInfo) {
+			if (spawnInfo.Player.InModBiome(ModContent.GetInstance<PirateIsland>())) 
+			{
+				return 0.1f; 
+			}
+			return 0f;
+		}
 	}
 }
