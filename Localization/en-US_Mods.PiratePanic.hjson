@@ -20,6 +20,11 @@ Items: {
 		DisplayName: Tell No Tales
 		Tooltip: You heard it from a dead man.
 	}
+
+	DaveEJonesMelee: {
+		DisplayName: Dave E Jones Melee
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -33,7 +38,10 @@ NPCs: {
 	SpiritDiabolist.DisplayName: Spirit Diabolist
 }
 
-Projectiles.TellNoTalesProjectile.DisplayName: Tell No Tales Projectile
+Projectiles: {
+	TellNoTalesProjectile.DisplayName: Tell No Tales Projectile
+	DaveEJonesMeleeProjectile.DisplayName: Dave E Jones Melee Projectile
+}
 
 Biomes: {
 	PirateIsland: {

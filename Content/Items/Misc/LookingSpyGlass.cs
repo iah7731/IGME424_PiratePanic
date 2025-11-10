@@ -24,6 +24,8 @@ namespace PiratePanic.Content.Items.Misc
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.UseSound = SoundID.Item6;
             Item.consumable = false;
+            Item.value = 12000;
+            Item.sellPrice(9284);
         }
 
         public override bool? UseItem(Player player)
