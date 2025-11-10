@@ -27,7 +27,7 @@ namespace PiratePanic.Content.NPCs
 			NPC.width = 18;
 			NPC.height = 40;
 			NPC.damage = 40;
-			NPC.defense = 27;
+			NPC.defense = 22;
 			NPC.lifeMax = 375;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;

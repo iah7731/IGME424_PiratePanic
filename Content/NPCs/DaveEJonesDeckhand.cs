@@ -26,8 +26,8 @@ namespace PiratePanic.Content.NPCs
 		public override void SetDefaults() {
 			NPC.width = 18;
 			NPC.height = 40;
-			NPC.damage = 50;
-			NPC.defense = 30;
+			NPC.damage = 37;
+			NPC.defense = 21;
 			NPC.lifeMax = 450;
 			NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;

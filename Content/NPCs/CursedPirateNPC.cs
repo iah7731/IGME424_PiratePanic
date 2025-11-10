@@ -17,12 +17,15 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 using Terraria.Chat;
+using PiratePanic.Content.Biomes;
 
 namespace PiratePanic.Content.NPCs
 {
 	[AutoloadHead]
     public class CursedPirate : ModNPC
-    {
+	{
+		int hayBlockX = 0;
+		int hayBlockY = 0;
 
 		public override void SetStaticDefaults() {
 			Main.npcFrameCount[Type] = 25; // The total amount of frames the NPC has
@@ -42,11 +45,12 @@ namespace PiratePanic.Content.NPCs
 			};
 
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
-
 			ContentSamples.NpcBestiaryRarityStars[Type] = 3; // We can override the default bestiary star count calculation by setting this.
+			NPCID.Sets.ActsLikeTownNPC[Type] = true;
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults()
+		{
 			NPC.townNPC = true; // Sets NPC to be a Town NPC
 			NPC.friendly = true; // NPC Will not attack player
 			NPC.width = 18;
@@ -59,7 +63,7 @@ namespace PiratePanic.Content.NPCs
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.knockBackResist = 0.5f;
 			AnimationType = NPCID.Guide;
-
+			NPC.dontTakeDamage = true;
 			this.AIType = 7;
 		}
 
@@ -93,6 +97,18 @@ namespace PiratePanic.Content.NPCs
 
 
 		public override bool CanGoToStatue(bool toKingStatue) => true;
+
+		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+		{
+			if (spawnInfo.Player.InModBiome(ModContent.GetInstance<PirateIsland>())
+			&& !NPC.AnyNPCs(Type)
+			&& spawnInfo.SpawnTileType == TileID.HayBlock)
+			{
+				return 1f;
+			}
+
+			return 0f;
+		}
 
 		public static void SpawnDaveEJones(int onWho)
 		{

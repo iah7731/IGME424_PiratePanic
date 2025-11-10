@@ -15,7 +15,8 @@ using StructureHelper;
 using System.Diagnostics;
 using log4net.Repository.Hierarchy;
 using Terraria.ID;
-
+using System.IO.Pipes;
+using PiratePanic.Content.NPCs;
 
 namespace PiratePanic.Content.Subworlds
 {
@@ -52,7 +53,7 @@ namespace PiratePanic.Content.Subworlds
             for (int x = 0; x < Main.maxTilesX; x++)
             {
                 for (int y = 0; y < Main.maxTilesY; y++)
-                {  
+                {
                     Tile tile = Main.tile[x, y];
                     if (tile != null && tile.HasTile && tile.TileType == TileID.CrispyHoneyBlock)
                     {
@@ -62,6 +63,8 @@ namespace PiratePanic.Content.Subworlds
                     }
                 }
             }
+
+            
         }
 
     }
