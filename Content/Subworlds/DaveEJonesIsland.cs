@@ -12,6 +12,9 @@ using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using StructureHelper;
+using System.Diagnostics;
+using log4net.Repository.Hierarchy;
+using Terraria.ID;
 
 
 namespace PiratePanic.Content.Subworlds
@@ -20,15 +23,46 @@ namespace PiratePanic.Content.Subworlds
     {
 
         public override bool ShouldSave => true;
-        public override bool NoPlayerSaving => true;
+        public override bool NoPlayerSaving => false;
 
-        public override int Width => 1005;
-        public override int Height => 409;
+        public override int Width => 1046;
+        public override int Height => 630;
 
         public override List<GenPass> Tasks => new()
         {
 
         };
+
+
+        public override void OnLoad()
+        {
+            Main.worldSurface = 350;
+            Main.rockLayer = Height + 1;
+            Main.maxTilesY = 1200;
+
+            Console.WriteLine("DaveEJonesIsland Subworld Loaded");
+            Console.WriteLine(StructureHelper.API.Generator.GetStructureDimensions("Content/Subworlds/DaveEJonesIsland.shstruct", ModContent.GetInstance<PiratePanic>(), false));
+            StructureHelper.API.Generator.GenerateStructure("Content/Subworlds/DaveEJonesIsland.shstruct", 
+                new Point16(40,300), 
+                ModContent.GetInstance<PiratePanic>(), 
+                false, 
+                false, 
+                GenFlags.None);
+
+            for (int x = 0; x < Main.maxTilesX; x++)
+            {
+                for (int y = 0; y < Main.maxTilesY; y++)
+                {  
+                    Tile tile = Main.tile[x, y];
+                    if (tile != null && tile.HasTile && tile.TileType == TileID.CrispyHoneyBlock)
+                    {
+                        Main.spawnTileX = x;
+                        Main.spawnTileY = y;
+                        Main.tile[x, y].TileType = TileID.WoodBlock;
+                    }
+                }
+            }
+        }
 
     }
 }

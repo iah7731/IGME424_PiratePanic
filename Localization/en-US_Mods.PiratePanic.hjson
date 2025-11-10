@@ -13,12 +13,12 @@ Items: {
 
 	LookingSpyGlass: {
 		DisplayName: Looking Spy Glass
-		Tooltip: "The curse lies within."
+		Tooltip: Takes you to Dave E Jones' island.
 	}
 
 	TellNoTales: {
 		DisplayName: Tell No Tales
-		Tooltip: "You heard it from a dead man."
+		Tooltip: You heard it from a dead man.
 	}
 }
 
@@ -34,3 +34,10 @@ NPCs: {
 }
 
 Projectiles.TellNoTalesProjectile.DisplayName: Tell No Tales Projectile
+
+Biomes: {
+	PirateIsland: {
+		TownNPCDialogueName: the Pirate Island
+		DisplayName: Pirate Island
+	}
+}

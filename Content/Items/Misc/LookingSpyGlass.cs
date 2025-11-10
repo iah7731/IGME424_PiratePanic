@@ -19,8 +19,8 @@ namespace PiratePanic.Content.Items.Misc
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Blue;
-            Item.useAnimation = 20;
-            Item.useTime = 20;
+            Item.useAnimation = 45;
+            Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.UseSound = SoundID.Item6;
             Item.consumable = false;
@@ -33,13 +33,13 @@ namespace PiratePanic.Content.Items.Misc
             {
                 if (SubworldSystem.IsActive<DaveEJonesIsland>())
                 {
-                    Main.NewText("Returning to the overworld...");
+                    Main.NewText("The Island be waiting");
                     SubworldSystem.Exit();
                 }
                 else
                 {
-                    Main.NewText("Entering the subworld...");
-                    SubworldSystem.Enter<DaveEJonesIsland>(); // Enters subworld
+                    Main.NewText("Welcome to this cursed place");
+                    SubworldSystem.Enter<DaveEJonesIsland>();
                 }
             }
 
