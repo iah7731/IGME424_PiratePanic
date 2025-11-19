@@ -13,7 +13,7 @@ Items: {
 
 	LookingSpyGlass: {
 		DisplayName: Looking Spy Glass
-		Tooltip: Takes you to Dave E Jones' island.
+		Tooltip: The curse lies within.
 	}
 
 	TellNoTales: {
@@ -36,6 +36,7 @@ NPCs: {
 	AngryJones.DisplayName: Angry Jones
 	RaggedJones.DisplayName: Ragged Jones
 	SpiritDiabolist.DisplayName: Spirit Diabolist
+	DaveEJonesBody.DisplayName: Dave E Jones Body
 }
 
 Projectiles: {

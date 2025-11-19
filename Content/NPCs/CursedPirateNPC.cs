@@ -18,6 +18,7 @@ using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 using Terraria.Chat;
 using PiratePanic.Content.Biomes;
+using PiratePanic.Content.NPCs.DaveEJones;
 
 namespace PiratePanic.Content.NPCs
 {
@@ -119,7 +120,7 @@ namespace PiratePanic.Content.NPCs
 			int num2 = 0;
 			for (int i = 0; i < 200; i++)
 			{
-				if (Main.npc[i].active && Main.npc[i].type == 35) // change this to Dave E Jones ID later
+				if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<DaveEJonesBody>())
 				{
 					flag = false;
 					break;
@@ -138,7 +139,7 @@ namespace PiratePanic.Content.NPCs
 					zero = Main.npc[j].position;
 					num = Main.npc[j].width;
 					num2 = Main.npc[j].height;
-					if (Main.netMode == 2)
+					if (Main.netMode == NetmodeID.Server)
 					{
 						NetMessage.SendData(23, -1, -1, null, j);
 					}
@@ -146,9 +147,9 @@ namespace PiratePanic.Content.NPCs
 			}
 			if (flag && flag2)
 			{
-				int num3 = NPC.NewNPC(NPC.GetBossSpawnSource(onWho), (int)zero.X + num / 2, (int)zero.Y + num2 / 2, 35); // change the 35 to Dave E Jones's ID
+				int num3 = NPC.NewNPC(NPC.GetBossSpawnSource(onWho), (int)zero.X + num / 2, (int)zero.Y + num2 / 2, ModContent.NPCType<DaveEJonesBody>()); // change the 35 to Dave E Jones's ID
 				Main.npc[num3].netUpdate = true;
-				string nPCNameValue = Lang.GetNPCNameValue(ModContent.NPCType<CursedPirate>()); // Change this to Dave E Jones
+				string nPCNameValue = Lang.GetNPCNameValue(ModContent.NPCType<DaveEJonesBody>()); // Change this to Dave E Jones
 				if (Main.netMode == 0)
 				{
 					Main.NewText(Language.GetTextValue("Announcement.HasAwoken", nPCNameValue), 175, 75);
