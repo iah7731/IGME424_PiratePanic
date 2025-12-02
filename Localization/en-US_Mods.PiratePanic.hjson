@@ -47,6 +47,10 @@ NPCs: {
 	RaggedJones.DisplayName: Ragged Jones
 	SpiritDiabolist.DisplayName: Spirit Diabolist
 	DaveEJonesBody.DisplayName: Dave E Jones Body
+	DaveEJonesCannon.DisplayName: Dave E Jones Cannon
+	DaveEJonesLaser.DisplayName: Dave E Jones Laser
+	DaveEJonesSaw.DisplayName: Dave E Jones Saw
+	DaveEJonesVice.DisplayName: Dave E Jones Vice
 }
 
 Projectiles: {
