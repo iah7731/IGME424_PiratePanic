@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using SubworldLibrary;
 using PiratePanic.Content.Subworlds;
 
+
 namespace PiratePanic.Content.Items.Misc
 {
     internal class LookingSpyGlass : ModItem
@@ -47,6 +48,17 @@ namespace PiratePanic.Content.Items.Misc
 
             return true;
         }
+
+        // Saving this for the boss summon
+        //public override void AddRecipes()
+        //{
+        //    Recipe recipe = CreateRecipe();
+        //    recipe.AddIngredient(ItemID.Skull, 1);
+        //    recipe.AddIngredient(ItemID.Bone, 20);
+        //    recipe.AddIngredient(ItemID.MagicMirror, 1);
+        //    recipe.AddTile(TileID.MythrilAnvil);
+        //    recipe.Register();
+        //}
 
     }
 }
