@@ -39,10 +39,8 @@ namespace PiratePanic.Content.NPCs
 
 			// Influences how the NPC looks in the Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-				Velocity = 1f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
-				Direction = 1 // -1 is left and 1 is right. NPCs are drawn facing the left by default but ExamplePerson will be drawn facing the right
-				// Rotation = MathHelper.ToRadians(180) // You can also change the rotation of an NPC. Rotation is measured in radians
-				// If you want to see an example of manually modifying these when the NPC is drawn, see PreDraw
+				Velocity = 1f, 
+				Direction = 1 
 			};
 
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
@@ -56,7 +54,7 @@ namespace PiratePanic.Content.NPCs
 			NPC.friendly = true; // NPC Will not attack player
 			NPC.width = 18;
 			NPC.height = 40;
-			NPC.aiStyle = 7;
+			NPC.aiStyle = NPCAIStyleID.Passive;
 			NPC.damage = 10;
 			NPC.defense = 15;
 			NPC.lifeMax = 250;
@@ -65,7 +63,7 @@ namespace PiratePanic.Content.NPCs
 			NPC.knockBackResist = 0.5f;
 			AnimationType = NPCID.Guide;
 			NPC.dontTakeDamage = true;
-			this.AIType = 7;
+			SpawnModBiomes = [ModContent.GetInstance<PirateIsland>().Type];
 		}
 
 		public override string GetChat() {
@@ -141,7 +139,7 @@ namespace PiratePanic.Content.NPCs
 					num2 = Main.npc[j].height;
 					if (Main.netMode == NetmodeID.Server)
 					{
-						NetMessage.SendData(23, -1, -1, null, j);
+						NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, j);
 					}
 				}
 			}
@@ -150,11 +148,11 @@ namespace PiratePanic.Content.NPCs
 				int num3 = NPC.NewNPC(NPC.GetBossSpawnSource(onWho), (int)zero.X + num / 2, (int)zero.Y + num2 / 2, ModContent.NPCType<DaveEJonesBody>()); // change the 35 to Dave E Jones's ID
 				Main.npc[num3].netUpdate = true;
 				string nPCNameValue = Lang.GetNPCNameValue(ModContent.NPCType<DaveEJonesBody>()); // Change this to Dave E Jones
-				if (Main.netMode == 0)
+				if (Main.netMode == NetmodeID.SinglePlayer)
 				{
 					Main.NewText(Language.GetTextValue("Announcement.HasAwoken", nPCNameValue), 175, 75);
 				}
-				else if (Main.netMode == 2)
+				else if (Main.netMode == NetmodeID.Server)
 				{
 					ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", Lang.GetNPCName(35).ToNetworkText()), new Color(175, 75, 255)); // Change this to Dave E Jones
 				}

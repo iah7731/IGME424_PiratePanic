@@ -13,6 +13,7 @@ using Terraria.ModLoader;
 using PiratePanic.Content.Items.Weapons;
 using Terraria.Graphics;
 using ReLogic.Content;
+using PiratePanic.Content.Biomes;
 
 namespace PiratePanic.Content.NPCs.DaveEJones
 {
@@ -60,7 +61,8 @@ namespace PiratePanic.Content.NPCs.DaveEJones
             NPC.boss = true;
             NPC.npcSlots = 10f;
             AnimationType = NPCID.SkeletronPrime;
-
+            NPC.value = Item.buyPrice(gold: 15);
+            SpawnModBiomes = [ModContent.GetInstance<PirateIsland>().Type];
             // The following code assigns a music track to the boss in a simple way.
             if (!Main.dedServ)
             {
@@ -71,7 +73,6 @@ namespace PiratePanic.Content.NPCs.DaveEJones
         {
             // Sets the description of this NPC that is listed in the bestiary
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                new MoonLordPortraitBackgroundProviderBestiaryInfoElement(), // Plain black background
 				new FlavorTextBestiaryInfoElement("Dave E Jones")
             });
         }
@@ -282,16 +283,8 @@ namespace PiratePanic.Content.NPCs.DaveEJones
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            // Do NOT misuse the ModifyNPCLoot and OnKill hooks: the former is only used for registering drops, the latter for everything else
-
-            // The order in which you add loot will appear as such in the Bestiary. To mirror vanilla boss order:
-            // 1. Trophy
-            // 2. Classic Mode ("not expert")
-            // 3. Expert Mode (usually just the treasure bag)
-            // 4. Master Mode (relic first, pet last, everything else in between)
-
             // Trophies are spawned with 1/10 chance
-            //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Furniture.MinionBossTrophy>(), 10));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Furniture.DaveEJonesBossTrophy>(), 10));
 
             // All the Classic Mode drops here are based on "not expert", meaning we use .OnSuccess() to add them into the rule, which then gets added
             LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
@@ -299,18 +292,16 @@ namespace PiratePanic.Content.NPCs.DaveEJones
             // Notice we use notExpertRule.OnSuccess instead of npcLoot.Add so it only applies in normal mode
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TellNoTales>(), 3));
             notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<DaveEJonesMelee>(), 3));
-            //notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<DaveEJonesMelee>(), 3));
-
-
-
+            notExpertRule.OnSuccess(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<DaveEJonesBody>()));
+            
             // Finally add the leading rule
             npcLoot.Add(notExpertRule);
 
             // Add the treasure bag using ItemDropRule.BossBag (automatically checks for expert mode)
-            //npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<MinionBossBag>()));
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.Consumables.DaveEJonesBossBag>()));
 
             // ItemDropRule.MasterModeCommonDrop for the relic
-            //npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Items.Placeable.Furniture.MinionBossRelic>()));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Items.Placeable.Furniture.DaveEJonesBossRelic>()));
 
             // ItemDropRule.MasterModeDropOnAllPlayers for the pet
             //npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<MinionBossPetItem>(), 4));
@@ -391,7 +382,6 @@ namespace PiratePanic.Content.NPCs.DaveEJones
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0f;
             NPC.netAlways = true;
-
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

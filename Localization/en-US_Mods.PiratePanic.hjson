@@ -26,13 +26,18 @@ Items: {
 		Tooltip: ""
 	}
 
-	DaveEJonesSummon: {
-		DisplayName: Dave E Jones Summon
+	DaveEJonesBossBag: {
+		DisplayName: Dave E Jones Boss Bag
 		Tooltip: ""
 	}
 
-	DaveEJonesRanged: {
-		DisplayName: Dave E Jones Ranged
+	DaveEJonesBossRelic: {
+		DisplayName: Dave E Jones Boss Relic
+		Tooltip: ""
+	}
+
+	DaveEJonesBossTrophy: {
+		DisplayName: Dave E Jones Boss Trophy
 		Tooltip: ""
 	}
 }
@@ -56,7 +61,6 @@ NPCs: {
 Projectiles: {
 	TellNoTalesProjectile.DisplayName: Tell No Tales Projectile
 	DaveEJonesMeleeProjectile.DisplayName: Dave E Jones Melee Projectile
-	DaveEJonesRangedProjectile.DisplayName: Dave E Jones Ranged Projectile
 }
 
 Biomes: {

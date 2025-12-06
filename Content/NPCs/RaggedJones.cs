@@ -34,7 +34,7 @@ namespace PiratePanic.Content.NPCs
 			NPC.value = 60f;
 			NPC.knockBackResist = 0.4f;
 			NPC.aiStyle = NPCAIStyleID.Caster; 
-
+			SpawnModBiomes = [ModContent.GetInstance<PirateIsland>().Type];
 			AIType = NPCID.RaggedCaster; // Might end up despawning if there isn't a Pirate Invasion. Needs to be checked.
 			AnimationType = NPCID.RaggedCaster; 
 			Banner = Item.NPCtoBanner(NPCID.RaggedCaster);
@@ -44,9 +44,6 @@ namespace PiratePanic.Content.NPCs
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange([
-				// Sets the spawning conditions of this NPC that is listed in the bestiary.
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
-
 				// Sets the description of this NPC that is listed in the bestiary.
 				new FlavorTextBestiaryInfoElement("RaggedJones"),
 			]);
