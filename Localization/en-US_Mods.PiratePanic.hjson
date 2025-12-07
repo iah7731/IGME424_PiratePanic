@@ -22,22 +22,22 @@ Items: {
 	}
 
 	DaveEJonesMelee: {
-		DisplayName: Dave E Jones Melee
+		DisplayName: Dave's Swashbuckler
 		Tooltip: ""
 	}
 
 	DaveEJonesBossBag: {
-		DisplayName: Dave E Jones Boss Bag
+		DisplayName: Treasure Bag (Dave E Jones)
 		Tooltip: ""
 	}
 
 	DaveEJonesBossRelic: {
-		DisplayName: Dave E Jones Boss Relic
+		DisplayName: Dave E Jones Relic
 		Tooltip: ""
 	}
 
 	DaveEJonesBossTrophy: {
-		DisplayName: Dave E Jones Boss Trophy
+		DisplayName: Dave E Jones Trophy
 		Tooltip: ""
 	}
 }
@@ -51,7 +51,7 @@ NPCs: {
 	AngryJones.DisplayName: Angry Jones
 	RaggedJones.DisplayName: Ragged Jones
 	SpiritDiabolist.DisplayName: Spirit Diabolist
-	DaveEJonesBody.DisplayName: Dave E Jones Body
+	DaveEJonesBody.DisplayName: Dave E Jones
 	DaveEJonesCannon.DisplayName: Dave E Jones Cannon
 	DaveEJonesLaser.DisplayName: Dave E Jones Laser
 	DaveEJonesSaw.DisplayName: Dave E Jones Saw

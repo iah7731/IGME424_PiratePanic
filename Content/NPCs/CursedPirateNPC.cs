@@ -29,7 +29,7 @@ namespace PiratePanic.Content.NPCs
 		int hayBlockY = 0;
 
 		public override void SetStaticDefaults() {
-			Main.npcFrameCount[Type] = 25; // The total amount of frames the NPC has
+			Main.npcFrameCount[Type] = 26; // The total amount of frames the NPC has
 			NPCID.Sets.ShimmerTownTransform[NPC.type] = false; // This set says that the Town NPC has a Shimmered form. Otherwise, the Town NPC will become transparent when touching Shimmer like other enemies.
 
 			NPCID.Sets.ShimmerTownTransform[Type] = false; // Allows for this NPC to have a different texture after touching the Shimmer liquid.
@@ -67,15 +67,33 @@ namespace PiratePanic.Content.NPCs
 		}
 
 		public override string GetChat() {
+			Player closestPlayer = Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)];
 			WeightedRandom<string> chat = new WeightedRandom<string>();
 
 			// These are things that the NPC has a chance of telling you when you talk to it.
-			chat.Add(Language.GetTextValue("Spongebob"));
-			chat.Add(Language.GetTextValue("Patrick"));
-			chat.Add(Language.GetTextValue("Squidward"));
-			chat.Add(Language.GetTextValue("Mr. Krabs"));
-			chat.Add(Language.GetTextValue("Uhhhh...."), 5.0);
-			chat.Add(Language.GetTextValue("YO SOMEBODY GET THE DOOR!!!!"), 0.1);
+			chat.Add(Language.GetTextValue("*Harrdarr Yarr Blarr*"));
+			chat.Add(Language.GetTextValue("Ye seen me crew? Told ‘em to fetch me a bottle ages ago!"));
+
+			if(closestPlayer.statLifeMax2 >= 400 && closestPlayer.statDefense >= 25)
+            {
+                chat.Add(Language.GetTextValue("Ye be here to face Jones? Aye I bet a bottle in yer favor."), 1.0);
+				chat.Add(Language.GetTextValue("Jones be damned again with ye here."), 1.0);
+            }
+			else
+            {
+              chat.Add(Language.GetTextValue("Ye best turn back, lest ye lose yer life."), 3.0);
+			  chat.Add(Language.GetTextValue("Jones be waitin’ fer ye on the other side."), 3.0);  
+            }
+
+			if(!closestPlayer.Male)
+            {
+                chat.Add(Language.GetTextValue("A lass could ne’er best Jones. But as strong as ye are…"), 1.0);
+            }
+
+			if(Main.IsItStorming)
+            {
+                chat.Add(Language.GetTextValue("Ye been foolish to sail the wild sea."), 0.5);
+            }
 
 			string chosenChat = chat; // chat is implicitly cast to a string. This is where the random choice is made.
 
@@ -107,6 +125,25 @@ namespace PiratePanic.Content.NPCs
 			}
 
 			return 0f;
+		}
+
+		public override void HitEffect(NPC.HitInfo hit) {
+
+			// Create gore when the NPC is killed.
+			if (Main.netMode != NetmodeID.Server && NPC.life <= 0) {
+				// Retrieve the gore types. This NPC only has shimmer variants. (6 total gores)
+				string variant = "";
+				int headGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Head").Type;
+				int armGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Arm").Type;
+				int legGore = Mod.Find<ModGore>($"{Name}_Gore{variant}_Leg").Type;
+
+				// Spawn the gores. The positions of the arms and legs are lowered for a more natural look.
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, headGore, 1f);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 20), NPC.velocity, armGore);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 20), NPC.velocity, armGore);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 34), NPC.velocity, legGore);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position + new Vector2(0, 34), NPC.velocity, legGore);
+			}
 		}
 
 		public static void SpawnDaveEJones(int onWho)
@@ -154,9 +191,10 @@ namespace PiratePanic.Content.NPCs
 				}
 				else if (Main.netMode == NetmodeID.Server)
 				{
-					ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", Lang.GetNPCName(35).ToNetworkText()), new Color(175, 75, 255)); // Change this to Dave E Jones
+					ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", Lang.GetNPCName(ModContent.NPCType<DaveEJonesBody>()).ToNetworkText()), new Color(175, 75, 255)); // Change this to Dave E Jones
 				}
 			}
 		}
+
     }
 }

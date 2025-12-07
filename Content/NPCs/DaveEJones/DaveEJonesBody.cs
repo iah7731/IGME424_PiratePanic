@@ -14,6 +14,7 @@ using PiratePanic.Content.Items.Weapons;
 using Terraria.Graphics;
 using ReLogic.Content;
 using PiratePanic.Content.Biomes;
+using PiratePanic.Common.Systems;
 
 namespace PiratePanic.Content.NPCs.DaveEJones
 {
@@ -26,6 +27,7 @@ namespace PiratePanic.Content.NPCs.DaveEJones
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 6;
+            
 
             // Automatically group with other bosses
             NPCID.Sets.BossBestiaryPriority.Add(Type);
@@ -348,6 +350,12 @@ namespace PiratePanic.Content.NPCs.DaveEJones
                 PunchCameraModifier modifier = new PunchCameraModifier(NPC.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, FullName);
                 Main.instance.CameraModifiers.Add(modifier);
             }
+        }
+
+
+        public override void OnKill()
+        {
+            NPC.SetEventFlagCleared(ref DownedBossSystem.downedDaveEJonesBoss, -1);
         }
     }
     internal class DaveEJonesCannon : ModNPC
