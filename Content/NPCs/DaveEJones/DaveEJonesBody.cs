@@ -16,6 +16,7 @@ using ReLogic.Content;
 using PiratePanic.Content.Biomes;
 using PiratePanic.Common.Systems;
 using PiratePanic.Content.Pets.DaveEJonesPet;
+using PiratePanic.Content.Items.Projectiles;
 
 namespace PiratePanic.Content.NPCs.DaveEJones
 {
@@ -24,7 +25,7 @@ namespace PiratePanic.Content.NPCs.DaveEJones
 
     public class DaveEJonesBody : ModNPC
     {
-       
+       	public static SoundStyle ahoySound; 
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 6;
@@ -35,6 +36,10 @@ namespace PiratePanic.Content.NPCs.DaveEJones
             // Specify the debuffs it is immune to. Most NPCs are immune to Confused.
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+
+            ahoySound = new SoundStyle("PiratePanic/Assets/Sounds/ahoy") {
+					PitchVariance = 0.5f,
+				};
         }
         public override void SetDefaults()
         {
@@ -76,6 +81,7 @@ namespace PiratePanic.Content.NPCs.DaveEJones
             {
                 NPC.TargetClosest();
                 NPC.ai[0] = 1f;
+                SoundEngine.PlaySound(ahoySound, new Vector2((int)NPC.position.X, (int)NPC.position.Y));
                 int num495 = NPC.NewNPC(NPC.GetSource_FromAI(), (int)(NPC.position.X + (float)(NPC.width / 2)), (int)NPC.position.Y + NPC.height / 2, ModContent.NPCType<DaveEJonesCannon>());
                 Main.npc[num495].ai[0] = -1f;
                 Main.npc[num495].ai[1] = NPC.whoAmI;
@@ -189,7 +195,7 @@ namespace PiratePanic.Content.NPCs.DaveEJones
                 NPC.ai[2] += 1f;
                 if (NPC.ai[2] == 2f)
                 {
-                    SoundEngine.PlaySound(SoundID.Roar, new Vector2((int)NPC.position.X, (int)NPC.position.Y));
+                    SoundEngine.PlaySound(ahoySound, new Vector2((int)NPC.position.X, (int)NPC.position.Y));
                 }
                 if (NPC.ai[2] >= 400f)
                 {
@@ -328,13 +334,10 @@ namespace PiratePanic.Content.NPCs.DaveEJones
 
                 var entitySource = NPC.GetSource_Death();
 
-                for (int i = 0; i < 2; i++)
-                {
-                    Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), backGoreType);
-                    Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), frontGoreType);
-                }
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), backGoreType);
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), frontGoreType);
 
-                SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
+                SoundEngine.PlaySound(ahoySound, NPC.Center);
 
                 // This adds a screen shake (screenshake) similar to Deerclops
                 PunchCameraModifier modifier = new PunchCameraModifier(NPC.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, FullName);
@@ -689,8 +692,8 @@ namespace PiratePanic.Content.NPCs.DaveEJones
             NPC.width = 52;
             NPC.height = 52;
             NPC.aiStyle = -1;
-            NPC.damage = 43;
-            NPC.defense = 32;
+            NPC.damage = 40;
+            NPC.defense = 30;
             NPC.lifeMax = 700;
             NPC.HitSound = SoundID.NPCHit4;
             NPC.DeathSound = SoundID.NPCDeath14;
@@ -1638,8 +1641,8 @@ namespace PiratePanic.Content.NPCs.DaveEJones
                     {
                         NPC.localAI[0] = 0f;
                         float num562 = 8f;
-                        int num563 = 25;
-                        int num564 = 100;
+                        int num563 = 19;
+                        int num564 = ModContent.GetInstance<BossLaserProjectile>().Type;
                         num561 = num562 / num561;
                         num559 *= num561;
                         num560 *= num561;

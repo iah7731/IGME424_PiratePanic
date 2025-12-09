@@ -1,1 +1,9 @@
-Modify this file with a description of your mod.
+After the Pirate Invasion, a new threat looms on the horizon. Do you have what it takes to go to an island full of cursed pirates and take down Dave E. Jones!?
+
+This mod adds a new subworld, seven new enemies, one new NPC, and one new boss. It also adds four new weapons and a new relic, trophy and pet for taking on the challenge in Master mode.
+
+The following mods are required.
+Subworld Library by John Snail
+Structure Helper by ScalarVector1
+
+“This mod was created as a team project for a game modding class within The School of Interactive Games and Media (IGM) at Rochester Institute of Technology in Rochester NY. IGM provides an educational environment that supports and encourages creative and collaborative academic inquiry by both faculty and students. IGM’s programs,  coursework, research, and development efforts provide students with the knowledge and skills to pursue meaningful  and rewarding careers in media-centric, interactive software development, while simultaneously advancing the field and helping to provide a well-rounded educational experience.” 

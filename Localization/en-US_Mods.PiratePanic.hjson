@@ -67,6 +67,8 @@ Projectiles: {
 	TellNoTalesProjectile.DisplayName: Tell No Tales Projectile
 	DaveEJonesMeleeProjectile.DisplayName: Dave E Jones Melee Projectile
 	DaveEJonesPetProjectile.DisplayName: Floating Sten
+	BossBombProjectile.DisplayName: Boss Bomb Projectile
+	BossLaserProjectile.DisplayName: Boss Laser Projectile
 }
 
 Biomes: {
