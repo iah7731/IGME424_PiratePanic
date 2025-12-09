@@ -40,6 +40,11 @@ Items: {
 		DisplayName: Dave E Jones Trophy
 		Tooltip: ""
 	}
+
+	DaveEJonesPetItem: {
+		DisplayName: Sten's Fedora
+		Tooltip: If you put me in your mod, I'll give you a 100!
+	}
 }
 
 NPCs: {
@@ -61,11 +66,19 @@ NPCs: {
 Projectiles: {
 	TellNoTalesProjectile.DisplayName: Tell No Tales Projectile
 	DaveEJonesMeleeProjectile.DisplayName: Dave E Jones Melee Projectile
+	DaveEJonesPetProjectile.DisplayName: Floating Sten
 }
 
 Biomes: {
 	PirateIsland: {
 		TownNPCDialogueName: the Pirate Island
 		DisplayName: Pirate Island
+	}
+}
+
+Buffs: {
+	DaveEJonesPetBuff: {
+		DisplayName: Floating Sten
+		Description: If you put me in your mod, I'll give you a 100!
 	}
 }

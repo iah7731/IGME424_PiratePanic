@@ -15,6 +15,7 @@ using Terraria.Graphics;
 using ReLogic.Content;
 using PiratePanic.Content.Biomes;
 using PiratePanic.Common.Systems;
+using PiratePanic.Content.Pets.DaveEJonesPet;
 
 namespace PiratePanic.Content.NPCs.DaveEJones
 {
@@ -27,7 +28,6 @@ namespace PiratePanic.Content.NPCs.DaveEJones
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 6;
-            
 
             // Automatically group with other bosses
             NPCID.Sets.BossBestiaryPriority.Add(Type);
@@ -35,19 +35,9 @@ namespace PiratePanic.Content.NPCs.DaveEJones
             // Specify the debuffs it is immune to. Most NPCs are immune to Confused.
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
-            // This boss also becomes immune to OnFire and all buffs that inherit OnFire immunity during the second half of the fight. See the ApplySecondStageBuffImmunities method.
-
-            // // Influences how the NPC looks in the Bestiary
-            // NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
-            // 	CustomTexturePath = "ExampleMod/Assets/Textures/Bestiary/MinionBoss_Preview",
-            // 	PortraitScale = 0.6f, // Portrait refers to the full picture when clicking on the icon in the bestiary
-            // 	PortraitPositionYOverride = 0f,
-            // };
-            // NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
         }
         public override void SetDefaults()
         {
-
             NPC.width = 80;
             NPC.height = 102;
             NPC.aiStyle = -1;
@@ -306,7 +296,7 @@ namespace PiratePanic.Content.NPCs.DaveEJones
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Items.Placeable.Furniture.DaveEJonesBossRelic>()));
 
             // ItemDropRule.MasterModeDropOnAllPlayers for the pet
-            //npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<MinionBossPetItem>(), 4));
+            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<DaveEJonesPetItem>(), 4));
         }
 
 
