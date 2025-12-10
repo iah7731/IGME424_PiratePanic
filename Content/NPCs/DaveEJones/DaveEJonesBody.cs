@@ -666,6 +666,28 @@ namespace PiratePanic.Content.NPCs.DaveEJones
                 }
             }
         }
+
+        public override void HitEffect(NPC.HitInfo hit)
+        {
+            // If the NPC dies, spawn gore and play a sound
+            if (Main.netMode == NetmodeID.Server)
+            {
+                // We don't want Mod.Find<ModGore> to run on servers as it will crash because gores are not loaded on servers
+                return;
+            }
+
+            if (NPC.life <= 0)
+            {
+                // These gores work by simply existing as a texture inside any folder which path contains "Gores/"
+                int backGoreType = Mod.Find<ModGore>("DaveEJonesCannon_Top").Type;
+                int frontGoreType = Mod.Find<ModGore>("DaveEJonesCannon_Bottom").Type;
+
+                var entitySource = NPC.GetSource_Death();
+
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), backGoreType);
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), frontGoreType);
+            }
+        }
     }
 
     internal class DaveEJonesSaw : ModNPC
@@ -684,7 +706,7 @@ namespace PiratePanic.Content.NPCs.DaveEJones
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
             NPCID.Sets.RespawnEnemyID[Type] = ModContent.NPCType<DaveEJonesBody>();
-            Main.npcFrameCount[Type] = 2;
+            Main.npcFrameCount[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -701,7 +723,6 @@ namespace PiratePanic.Content.NPCs.DaveEJones
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0f;
             NPC.netAlways = true;
-            AnimationType = NPCID.PrimeSaw;
         }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -1055,6 +1076,29 @@ namespace PiratePanic.Content.NPCs.DaveEJones
             }
 
         }
+
+        public override void HitEffect(NPC.HitInfo hit)
+        {
+            // If the NPC dies, spawn gore and play a sound
+            if (Main.netMode == NetmodeID.Server)
+            {
+                // We don't want Mod.Find<ModGore> to run on servers as it will crash because gores are not loaded on servers
+                return;
+            }
+
+            if (NPC.life <= 0)
+            {
+                // These gores work by simply existing as a texture inside any folder which path contains "Gores/"
+                int backGoreType = Mod.Find<ModGore>("DaveEJonesSaw_Top").Type;
+                int frontGoreType = Mod.Find<ModGore>("DaveEJonesSaw_Bottom").Type;
+
+                var entitySource = NPC.GetSource_Death();
+
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), backGoreType);
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), frontGoreType);
+            }
+        }
+
     }
 
     internal class DaveEJonesVice : ModNPC
@@ -1418,6 +1462,26 @@ namespace PiratePanic.Content.NPCs.DaveEJones
                 }
             }
         }
+
+        public override void HitEffect(NPC.HitInfo hit)
+        {
+            // If the NPC dies, spawn gore and play a sound
+            if (Main.netMode == NetmodeID.Server)
+            {
+                // We don't want Mod.Find<ModGore> to run on servers as it will crash because gores are not loaded on servers
+                return;
+            }
+
+            if (NPC.life <= 0)
+            {
+                // These gores work by simply existing as a texture inside any folder which path contains "Gores/"
+                int backGoreType = Mod.Find<ModGore>("DaveEJonesVice").Type;
+
+                var entitySource = NPC.GetSource_Death();
+
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), backGoreType);
+            }
+        }
     }
 
     internal class DaveEJonesLaser : ModNPC
@@ -1732,6 +1796,28 @@ namespace PiratePanic.Content.NPCs.DaveEJones
                         int num572 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector69.X, vector69.Y, num566, num567, num571, num570, 0f, Main.myPlayer);
                     }
                 }
+            }
+        }
+
+        public override void HitEffect(NPC.HitInfo hit)
+        {
+            // If the NPC dies, spawn gore and play a sound
+            if (Main.netMode == NetmodeID.Server)
+            {
+                // We don't want Mod.Find<ModGore> to run on servers as it will crash because gores are not loaded on servers
+                return;
+            }
+
+            if (NPC.life <= 0)
+            {
+                // These gores work by simply existing as a texture inside any folder which path contains "Gores/"
+                int backGoreType = Mod.Find<ModGore>("DaveEJonesLaser_Top").Type;
+                int frontGoreType = Mod.Find<ModGore>("DaveEJonesLaser_Bottom").Type;
+
+                var entitySource = NPC.GetSource_Death();
+
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), backGoreType);
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), frontGoreType);
             }
         }
     }
