@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.ModLoader.Utilities;
 using PiratePanic.Content.Biomes;
+using System.Collections.Generic;
 
 namespace PiratePanic.Content.NPCs
 {
@@ -21,6 +22,7 @@ namespace PiratePanic.Content.NPCs
 				Velocity = 1f 
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+			    ContentSamples.NpcBestiaryRarityStars[Type] = 3;
 		}
 
 		public override void SetDefaults() {
@@ -41,14 +43,13 @@ namespace PiratePanic.Content.NPCs
 			BannerItem = Item.BannerToItem(Banner); 
 		}
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
-			bestiaryEntry.Info.AddRange([
-
-				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("Dave E Jones Deadeye"),
-			]);
-		}
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Sets the description of this NPC that is listed in the bestiary
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+				new FlavorTextBestiaryInfoElement("Their deadly aim could not save them from being cursed, and now they make it everyone else’s problem. At least they’re still missing that other eye…")
+            });
+        }
 
 		public override void HitEffect(NPC.HitInfo hit) {
 

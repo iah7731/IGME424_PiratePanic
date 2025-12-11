@@ -36,6 +36,7 @@ namespace PiratePanic.Content.NPCs
 
 			NPCID.Sets.NoTownNPCHappiness[NPC.type] = true;
 			NPCID.Sets.SpawnsWithCustomName[Type] = true;
+			
 
 			// Influences how the NPC looks in the Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers() {
@@ -46,6 +47,7 @@ namespace PiratePanic.Content.NPCs
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 			ContentSamples.NpcBestiaryRarityStars[Type] = 3; // We can override the default bestiary star count calculation by setting this.
 			NPCID.Sets.ActsLikeTownNPC[Type] = true;
+			ContentSamples.NpcBestiaryRarityStars[Type] = 2;
 		}
 
 		public override void SetDefaults()
@@ -65,6 +67,14 @@ namespace PiratePanic.Content.NPCs
 			NPC.dontTakeDamage = true;
 			SpawnModBiomes = [ModContent.GetInstance<PirateIsland>().Type];
 		}
+
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Sets the description of this NPC that is listed in the bestiary
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+				new FlavorTextBestiaryInfoElement("The unlucky host of Dave E Jones’s soul. He has been trapped on an island awaiting the day he can pass his curse onto another.")
+            });
+        }
 
 		public override string GetChat() {
 			Player closestPlayer = Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)];

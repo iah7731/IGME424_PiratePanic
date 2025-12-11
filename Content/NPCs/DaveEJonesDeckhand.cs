@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.ModLoader.Utilities;
 using PiratePanic.Content.Biomes;
+using System.Collections.Generic;
 
 namespace PiratePanic.Content.NPCs
 {
@@ -21,6 +22,7 @@ namespace PiratePanic.Content.NPCs
 				Velocity = 1f 
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+			ContentSamples.NpcBestiaryRarityStars[Type] = 3;
 		}
 
 		public override void SetDefaults() {
@@ -35,19 +37,19 @@ namespace PiratePanic.Content.NPCs
 			NPC.knockBackResist = 0.4f;
 			NPC.aiStyle = NPCAIStyleID.Fighter; 
 			SpawnModBiomes = [ModContent.GetInstance<PirateIsland>().Type];
-			AIType = NPCID.PirateDeckhand; // Might end up despawning if there isn't a Pirate Invasion. Needs to be checked.
+			AIType = NPCID.PirateDeckhand;
 			AnimationType = NPCID.PirateDeckhand; 
 			Banner = Item.NPCtoBanner(NPCID.PirateDeckhand);
 			BannerItem = Item.BannerToItem(Banner); 
 		}
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
-			bestiaryEntry.Info.AddRange([
-				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("Dave E Jones Deckhand"),
-			]);
-		}
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Sets the description of this NPC that is listed in the bestiary
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+				new FlavorTextBestiaryInfoElement("Cursed to swab the deck in life, and now cursed for real to swab the floors. Maybe these deckhands just need a break.")
+            });
+        }
 
 		public override void HitEffect(NPC.HitInfo hit) {
 

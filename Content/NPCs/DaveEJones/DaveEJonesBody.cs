@@ -36,7 +36,7 @@ namespace PiratePanic.Content.NPCs.DaveEJones
             // Specify the debuffs it is immune to. Most NPCs are immune to Confused.
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
-
+            ContentSamples.NpcBestiaryRarityStars[Type] = 4;
             ahoySound = new SoundStyle("PiratePanic/Assets/Sounds/ahoy") {
 					PitchVariance = 0.5f,
 				};
@@ -70,7 +70,7 @@ namespace PiratePanic.Content.NPCs.DaveEJones
         {
             // Sets the description of this NPC that is listed in the bestiary
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-				new FlavorTextBestiaryInfoElement("Dave E Jones")
+				new FlavorTextBestiaryInfoElement("Cursed by the treasure he sought, Dave E Jones’s soul now resides within another unfortunate captain drawn in by the allure of riches, ready to protect what’s his.")
             });
         }
 

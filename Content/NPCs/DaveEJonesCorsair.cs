@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.ModLoader.Utilities;
 using PiratePanic.Content.Biomes;
+using System.Collections.Generic;
 
 namespace PiratePanic.Content.NPCs
 {
@@ -21,6 +22,7 @@ namespace PiratePanic.Content.NPCs
 				Velocity = 1f 
 			};
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+			    ContentSamples.NpcBestiaryRarityStars[Type] = 3;
 		}
 
 		public override void SetDefaults() {
@@ -42,13 +44,13 @@ namespace PiratePanic.Content.NPCs
 			SpawnModBiomes = [ModContent.GetInstance<PirateIsland>().Type];
 		}
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
-			bestiaryEntry.Info.AddRange([
-				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("Dave E Jones Corsair"),
-			]);
-		}
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Sets the description of this NPC that is listed in the bestiary
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+				new FlavorTextBestiaryInfoElement("This scimitar wielding mercenary has found their last contract, now cursed to stay on land forever.")
+            });
+        }
 
 		public override void HitEffect(NPC.HitInfo hit) {
 
