@@ -13,7 +13,10 @@ namespace PiratePanic.Content.Items.Projectiles
             Projectile.CloneDefaults(ProjectileID.Wasp);
             AIType = ProjectileID.Wasp;
             Projectile.ignoreWater = true;
-
+            Projectile.width = 20;
+            Projectile.height = 20;
+            Projectile.friendly = true;
+            Projectile.hostile = false;
 
             Projectile.tileCollide = false;
         }

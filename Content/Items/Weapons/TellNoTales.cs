@@ -18,6 +18,7 @@ namespace PiratePanic.Content.Items.Weapons
         {
             Item.CloneDefaults(ItemID.WaspGun);
             Item.damage = 60;
+            Item.mana = 9;
             Item.value = 12000;
             Item.rare = ItemRarityID.Green;
             Item.shoot = ModContent.ProjectileType<TellNoTalesProjectile>();

@@ -11,11 +11,13 @@ namespace PiratePanic.Content.Items.Projectiles
 {
     internal class DaveEJonesMeleeProjectile : ModProjectile
     {
-        public override void SetDefaults()
-        {
-            Projectile.CloneDefaults(ProjectileID.TerraBeam);
-            AIType = ProjectileID.TerraBeam;
-            Projectile.damage = 23;
+        public override void SetDefaults() 
+        { 
+            AIType = ProjectileID.TerraBeam; 
+            Projectile.friendly = true; 
+            Projectile.hostile = false; 
+            Projectile.damage = 23; 
+            Projectile.light = 0.5f;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

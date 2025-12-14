@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace PiratePanic.Content.Items.Weapons
 {
@@ -19,20 +22,27 @@ namespace PiratePanic.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.TerraBlade);
-            Item.SetNameOverride("Dave's Swashbuckler");
-            Item.shoot = ModContent.ProjectileType<Projectiles.DaveEJonesMeleeProjectile>();
-            Item.shootSpeed = 12f;
-            Item.useTime = 25;
-            Item.useAnimation = 25;
+            Item.width = 26;
+            Item.height = 42;
+
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.damage = 57;
-            Item.value = 12000;
-            Item.rare = ItemRarityID.Green;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
             Item.autoReuse = true;
-            Item.noMelee = false;                
-            Item.noUseGraphic = false;           
+
+            Item.DamageType = DamageClass.Melee;
+            Item.damage = 50;
+            Item.knockBack = 6;
+            Item.crit = 6;
+
+            Item.value = Item.buyPrice(gold: 5);
+            Item.rare = ItemRarityID.Green;
+            Item.UseSound = SoundID.Item1;
+
+            Item.shoot = ModContent.ProjectileType<Projectiles.DaveEJonesMeleeProjectile>();
+            Item.shootSpeed = 8f;
         }
+
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {

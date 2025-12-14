@@ -1,13 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PiratePanic.Content.Biomes;
+using PiratePanic.Content.NPCs.DaveEJones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Personalities;
 using Terraria.GameContent.UI;
@@ -16,14 +20,16 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
-using Terraria.Chat;
-using PiratePanic.Content.Biomes;
-using PiratePanic.Content.NPCs.DaveEJones;
 
 namespace PiratePanic.Content.Items.Misc
 {
     internal class DaveEJonesSummon : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+        }
+
         public override void SetDefaults()
         {
             Item.width = 20;
@@ -45,7 +51,7 @@ namespace PiratePanic.Content.Items.Misc
                 Vector2 zero = player.position;
                 int num = player.width;
                 int num2 = player.height;
-                int num3 = NPC.NewNPC(NPC.GetBossSpawnSource(Main.myPlayer), (int)zero.X + num / 2, (int)zero.Y + num2 / 2, ModContent.NPCType<DaveEJonesBody>()); // change the 35 to Dave E Jones's ID
+                int num3 = NPC.NewNPC(NPC.GetBossSpawnSource(Main.myPlayer), ((int)zero.X + num / 2) + 500, ((int)zero.Y + num2 / 2) - 500, ModContent.NPCType<DaveEJonesBody>()); // change the 35 to Dave E Jones's ID
                 Main.npc[num3].netUpdate = true;
                 string nPCNameValue = Lang.GetNPCNameValue(ModContent.NPCType<DaveEJonesBody>()); // Change this to Dave E Jones
                 if (Main.netMode == 0)

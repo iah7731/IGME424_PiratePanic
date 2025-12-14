@@ -12,8 +12,8 @@ Items: {
 	}
 
 	LookingSpyGlass: {
-		DisplayName: Looking Spy Glass
-		Tooltip: The curse lies within.
+		DisplayName: The Cursed Reflection
+		Tooltip: Takes you to Dave E. Jones' cursed island.
 	}
 
 	TellNoTales: {
@@ -23,7 +23,7 @@ Items: {
 
 	DaveEJonesMelee: {
 		DisplayName: Dave's Swashbuckler
-		Tooltip: ""
+		Tooltip: Plundered from his wee corpse.
 	}
 
 	DaveEJonesBossBag: {
@@ -44,6 +44,21 @@ Items: {
 	DaveEJonesPetItem: {
 		DisplayName: Sten's Fedora
 		Tooltip: If you put me in your mod, I'll give you a 100!
+	}
+
+	DaveEJonesRanged: {
+		Tooltip: Witness a true dead man's hand.
+		DisplayName: Trick Up Your Sleeve
+	}
+
+	DaveEJonesSummon: {
+		Tooltip: Summons Dave E. Jones
+		DisplayName: Eerie Looking Skull
+	}
+
+	DaveEJonesWhip: {
+		DisplayName: Grow A Spine
+		Tooltip: Ye to be wranglin', stranglin', and untanglin'
 	}
 }
 
@@ -69,6 +84,7 @@ Projectiles: {
 	DaveEJonesPetProjectile.DisplayName: Floating Sten
 	BossBombProjectile.DisplayName: Boss Bomb Projectile
 	BossLaserProjectile.DisplayName: Boss Laser Projectile
+	DaveEJonesWhipProjectile.DisplayName: Dave E Jones Whip Projectile
 }
 
 Biomes: {

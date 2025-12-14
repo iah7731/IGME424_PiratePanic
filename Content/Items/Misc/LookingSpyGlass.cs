@@ -1,18 +1,24 @@
-﻿using System;
+﻿using PiratePanic.Content.Subworlds;
+using SubworldLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using SubworldLibrary;
-using PiratePanic.Content.Subworlds;
 
 namespace PiratePanic.Content.Items.Misc
 {
     internal class LookingSpyGlass : ModItem
     {
+
+        public override void SetStaticDefaults()
+        {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+        }
 
         public override void SetDefaults()
         {
